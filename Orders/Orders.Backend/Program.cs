@@ -12,6 +12,11 @@ builder.Services.AddDbContext<DataContex>(x => x.UseSqlServer("name=LocalConnect
 
 var app = builder.Build();
 
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true)
+    .AllowCredentials());
 
 if (app.Environment.IsDevelopment())
 {
